@@ -16,3 +16,17 @@
 
 
 using namespace std;
+
+int PrimeFactors()
+
+int NoOfDivisor(int n){
+
+
+}
+
+int main(){
+
+
+
+
+}
