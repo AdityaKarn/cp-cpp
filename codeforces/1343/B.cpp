@@ -24,7 +24,7 @@ int main(){
     
 
     while(t--){
-        int start = 2; int end= 199998;
+        int start = 2; int end= 400000;
         cin>>n;
         if(n%4==2) cout<<"NO"<<endl;
 
