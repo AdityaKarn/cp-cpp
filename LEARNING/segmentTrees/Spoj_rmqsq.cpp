@@ -1,4 +1,3 @@
-//For minimum query
 #include<iostream>
 #include<vector>
 #include<algorithm>
@@ -16,24 +15,19 @@
 
 using namespace std;
 
+int arr[100001], st[400004];
 
-int arr[] = {1,2,-3};
-
-int st[10];
-
-
-void buildTree(int si, int ss, int se){
+void build(int si, int ss, int se){
     if(ss==se) {st[si]= arr[ss];
     return;}
 
     int mid = (ss+se)/2;
 
-    buildTree(2*si, ss, mid);
-    buildTree(2*si +1, mid+1, se);
+    build(2*si, ss, mid);
+    build(2*si +1, mid+1, se);
 
     st[si] = min(st[2*si], st[(2*si)+1]);
 }
-
 
 int query(int si, int ss, int se, int qs, int qe){
     if(ss>qe || se<qs) return INF;
@@ -50,8 +44,19 @@ int query(int si, int ss, int se, int qs, int qe){
 
 int main(){
 
-    buildTree(1,1,2);
+    int n,q, l, r;
 
-    cout<<query(1,1,2,0,1);
+    cin>>n;
 
+    REP(i,n) cin>>arr[i];
+    build(1,1,n);
+    cin>>q;
+
+    REP(i,q){
+        cin>>l>>r;
+        cout<<query(1,1,n, l+1, r+1)<<endl;
+    }
+
+
+    return 0;
 }
