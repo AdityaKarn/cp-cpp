@@ -22,6 +22,20 @@ int arr[] = {1,2,-3};
 int st[10];
 
 
+void update(int si, int ss, int se, int qi){
+    if(ss==se){
+        st[si] = arr[ss];
+        return;
+    }
+
+    int mid = (ss+se)/2;
+
+    if(qi<=mid) update(2*si, ss, mid, qi);
+    else update(2*si+1, mid+1, se, qi);
+
+    st[si] = min(st[2*si], st[(2*si)+1]);
+}
+
 void buildTree(int si, int ss, int se){
     if(ss==se) {st[si]= arr[ss];
     return;}
