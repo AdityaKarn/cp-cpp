@@ -16,8 +16,30 @@
 
 using namespace std;
 
+int A[101];
+
 int main()
 {
+    int t, n, c, sum = 0;
+
+    cin >> t;
+
+    while (t--)
+    {
+        sum = 0;
+        cin >> n >> c;
+
+        for (int i = 0; i < n; i++)
+        {
+            cin >> A[i];
+            sum += A[i];
+        }
+
+        if (c >= sum)
+            cout << "Yes\n";
+        else
+            cout << "No\n";
+    }
 
     return 0;
 }
