@@ -1,55 +1,75 @@
 #include <iostream>
 #include <cmath>
+
+#define lli long long int
 using namespace std;
 
-int turnOffLeftMostSetBit(int n)
+lli turnOffLeft(lli n)
 {
-    int x = log2(n);
+    lli x = log2(n);
 
-    int res = n;
+    lli res = n;
 
     res &= ~(1 << x);
+
     return res;
 }
 
 int main()
 {
 
-    int t, x, y, l, r;
+    int t, maxC = 0;
+    lli x, y, l, r;
     cin >> t;
 
     while (t--)
     {
         cin >> x >> y >> l >> r;
+        lli res;
 
-        int res = x | y;
-
-        if (res >= l && res <= r)
+        if (x == 0 || y == 0)
         {
-            cout << res << endl;
+            res = 0;
         }
         else
         {
+            res = x | y;
+        }
+
+        if (res < l || res > r)
+        {
+            // for (int i = l; i <= r; i++)
+            // {
+            //     int c = (x & i) * (y & i);
+
+            //     if (c > maxC)
+            //     {
+            //         maxC = c;
+            //         res = i;
+            //     }
+            // }
+
             while (true)
             {
                 if (x > y)
                 {
-                    x = turnOffLeftMostSetBit(x);
-                    res = x | y;
+                    x = turnOffLeft(x);
                 }
                 else
                 {
-                    y = turnOffLeftMostSetBit(y);
-                    res = x | y;
+                    y = turnOffLeft(y);
                 }
+
+                res = x | y;
 
                 if (res >= l && res <= r)
                 {
-                    cout << res << endl;
                     break;
                 }
             }
         }
+
+        cout << res << endl;
     }
 
     return 0;

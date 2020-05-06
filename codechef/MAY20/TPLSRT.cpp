@@ -33,7 +33,7 @@ bool isSorted(int a[], int n)
 
 int main()
 {
-    int t, n, k, res;
+    int t, n, k, res = 0;
     cin >> t;
 
     while (t--)
@@ -50,8 +50,13 @@ int main()
         {
             if (isSorted(p, n))
             {
-
                 break
+            }
+
+            if (p[i] != i)
+            {
+                int a = p[i];
+                int b = idx[p[i]];
             }
         }
     }
