@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <string>
+#include <stack>
 
 #define REP(i, n) for (int i = 1; i <= n; i++)
 
@@ -17,91 +17,61 @@
 
 using namespace std;
 
+lli histogram[100001];
+
+lli getMaxArea(lli his[], int n)
+{
+    stack<int> s;
+    int i = 0, tp;
+    lli currArea = 0, maxArea = 0;
+
+    while (i < n)
+    {
+        if (s.empty() || his[i] >= his[s.top()])
+        {
+            s.push(i++);
+        }
+        else
+        {
+            tp = s.top();
+            s.pop();
+
+            currArea = his[tp] * (s.empty() ? i : i - s.top() - 1);
+
+            maxArea = max(maxArea, currArea);
+        }
+    }
+
+    while (!s.empty())
+    {
+        tp = s.top();
+        s.pop();
+
+        currArea = his[tp] * (s.empty() ? i : i - s.top() - 1);
+
+        maxArea = max(maxArea, currArea);
+    }
+
+    return maxArea;
+}
+
 int main()
 {
     while (true)
     {
         int n;
         cin >> n;
-
         if (n == 0)
         {
             break;
         }
-        int currResult;
-        int min_height = INF, max_height = 0, UpOrDown = 0, prevOrDown = 0, iteration = 1, prev; //up = 1, down = -1
 
-        int curr;
-        cin >> curr;
-
-        min_height = max_height = curr;
-        prev = curr;
-        int res = 0;
-
-        for (int i = 1; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
-            cin >> curr;
-
-            curr >= prev ? UpOrDown = 1 : UpOrDown = -1;
-
-            if (UpOrDown == 1)
-            {
-
-                min_height = min(min_height, prev);
-            }
-            else
-            {
-                max_height = max(min_height, prev);
-            }
-
-            if (UpOrDown != prevOrDown)
-            {
-                //shape badla, calculate result
-
-                if (UpOrDown == 1)
-                {
-                    currResult = min_height * iteration;
-                }
-                else
-                {
-                    currResult = min_height * iteration;
-                }
-                cout << currResult << " c ";
-                res = max(res, currResult);
-
-                max_height = min_height = curr;
-                iteration = 1;
-            }
-            else if (UpOrDown == prevOrDown && UpOrDown == 1)
-            {
-                // add height
-                iteration++;
-            }
-            else if (UpOrDown == prevOrDown && UpOrDown == -1)
-            {
-                //add height
-                iteration++;
-            }
-
-            prev = curr;
-            prevOrDown = UpOrDown;
-
-            if (i == n - 1)
-            {
-                if (UpOrDown == 1)
-                {
-                    currResult = min_height * iteration;
-                }
-                else
-                {
-                    currResult = min_height * iteration;
-                }
-                cout << currResult << " c ";
-            }
+            cin >> histogram[i];
         }
 
-        cout << res << endl;
+        cout << getMaxArea(histogram, n) << endl;
     }
-
     return 0;
 }
