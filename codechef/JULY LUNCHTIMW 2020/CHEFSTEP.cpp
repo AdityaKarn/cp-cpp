@@ -20,4 +20,29 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
+    int t;
+    lli n, k;
+    cin >> t;
+
+    while (t--)
+    {
+        cin >> n >> k;
+
+        for (int i = 0; i < n; i++)
+        {
+            int cur;
+            cin >> cur;
+
+            if (cur % k == 0)
+            {
+                cout << "1";
+            }
+            else
+            {
+                cout << "0";
+            }
+        }
+        cout << "\n";
+    }
+    return 0;
 }
