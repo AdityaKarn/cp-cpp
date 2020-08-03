@@ -18,8 +18,24 @@ using namespace std;
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(0);
+    // ios_base::sync_with_stdio(false);
+    // cin.tie(0);
+    int t, n;
+    cin >> t;
 
+    while (t--)
+    {
+        cin >> n;
+
+        int x, y, resx = 0, resy = 0;
+        for (int i = 0; i < 4 * n - 1; i++)
+        {
+            cin >> x >> y;
+            resx ^= x;
+            resy ^= y;
+        }
+
+        cout << resx << " " << resy << "\n";
+    }
     return 0;
 }
