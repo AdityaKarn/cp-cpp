@@ -16,33 +16,42 @@
 
 using namespace std;
 
+lli a[200005];
+
 int main()
 {
-    // ios_base::sync_with_stdio(false);
-    // cin.tie(0);
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
 
-    int t, n, x, cur;
+    int t, n;
     cin >> t;
 
     while (t--)
     {
+        cin >> n;
+        for (int i = 0; i < n; i++)
+        {
+            cin >> a[i];
+        }
 
-        cin >> n >> x;
-        int v[n];
+        int allsame = true;
 
         for (int i = 0; i < n; i++)
         {
-            cin >> cur;
-            v.push_back(cur);
+            if (a[i] != a[0])
+            {
+                allsame = false;
+                break;
+            }
         }
 
-        int days = 0;
-        int cure = x;
-
-        while (true)
+        if (allsame)
         {
-            int count = 0, max_el = 1e9;
-            days++;
+            cout << n << "\n";
+        }
+        else
+        {
+            cout << 1 << "\n";
         }
     }
 
