@@ -58,8 +58,8 @@ int main()
         vector<pair<char, int>> a(n);
         for (int i = 0; i < n; i++)
         {
-            a[i] ={ s[i],
-                i };
+            a[i] = {s[i],
+                    i};
         }
 
         sort(a.begin(), a.end());
@@ -100,10 +100,10 @@ int main()
 
         for (int i = 1; i < n; i++)
         {
-            pair<int, int> prev ={ c[p[i - 1]],
-                c[(p[i - 1] + (1 << k)) % n] };
-            pair<int, int> now ={ c[p[i]],
-                c[(p[i] + (1 << k)) % n] };
+            pair<int, int> prev = {c[p[i - 1]],
+                                   c[(p[i - 1] + (1 << k)) % n]};
+            pair<int, int> now = {c[p[i]],
+                                  c[(p[i] + (1 << k)) % n]};
             if (now == prev)
             {
                 c_new[p[i]] = c_new[p[i - 1]];
@@ -137,13 +137,12 @@ int main()
 
     for (int i = 1; i < n; i++)
     {
-        string cur = s.substr(p[i], p[i]+n);
-        lli curlen = cur.length()-1;
+        string cur = s.substr(p[i], p[i] + n);
+        lli curlen = cur.length() - 1;
 
         res += curlen - (lli)lcp[i];
     }
     cout << res;
 
     return 0;
-
 }

@@ -21,5 +21,34 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(0);
 
+    int t, n, k;
+    cin >> t;
+
+    while (t--)
+    {
+
+        cin >> n >> k;
+
+        int rem = (n - k);
+
+        if (rem >= 0 && rem % 2 == 0)
+        {
+            cout << "0\n";
+            continue;
+        }
+
+        if (rem > 0)
+        {
+            cout << "1\n";
+            continue;
+        }
+
+        if (rem < 0)
+        {
+            cout << abs(n - k) << "\n";
+            continue;
+        }
+    }
+
     return 0;
 }
