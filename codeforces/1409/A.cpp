@@ -13,20 +13,32 @@
 #define vii vector<ii>
 #define lli long long int
 #define INF 1000000000
-#define IOS                  \
-    ios::sync_with_stdio(0); \
-    cin.tie(0);              \
-    cout.tie(0);
 
 using namespace std;
 
 void solveTestCases()
 {
+    lli a, b;
+
+    cin >> a >> b;
+
+    int c = abs(a - b) / 10;
+
+    if ((a - b) % 10 == 0)
+    {
+        cout << c << "\n";
+        return;
+    }
+    else
+    {
+        cout << c + 1 << "\n";
+    }
 }
 
 int main()
 {
-    IOS;
+    // ios_base::sync_with_stdio(false);
+    // cin.tie(0);
     int t;
     cin >> t;
 

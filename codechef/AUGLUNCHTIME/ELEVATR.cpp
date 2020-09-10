@@ -13,20 +13,27 @@
 #define vii vector<ii>
 #define lli long long int
 #define INF 1000000000
-#define IOS                  \
-    ios::sync_with_stdio(0); \
-    cin.tie(0);              \
-    cout.tie(0);
 
 using namespace std;
+int n, m;
 
 void solveTestCases()
 {
+    cin >> n >> m;
+    vector<int> B(n);
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> B[i];
+    }
+
+    for (int i = 0; i <)
 }
 
 int main()
 {
-    IOS;
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
     int t;
     cin >> t;
 

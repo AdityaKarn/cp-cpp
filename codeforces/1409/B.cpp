@@ -13,20 +13,39 @@
 #define vii vector<ii>
 #define lli long long int
 #define INF 1000000000
-#define IOS                  \
-    ios::sync_with_stdio(0); \
-    cin.tie(0);              \
-    cout.tie(0);
 
 using namespace std;
 
 void solveTestCases()
 {
+    int a, b, x, y, n;
+    cin >> a >> b >> x >> y >> n;
+
+    if (a < b)
+    {
+        swap(a, b);
+        swap(x, y);
+    }
+
+    int toDecreaseFromB = max(y, b - n);
+
+    n -= b - toDecreaseFromB;
+
+    b = toDecreaseFromB;
+
+    // cout << b << " " << toDecreaseFromB << " " << n;
+
+    a = max(x, a - n);
+
+    lli res = (lli)a * (lli)b;
+
+    cout << res << "\n";
 }
 
 int main()
 {
-    IOS;
+    // ios_base::sync_with_stdio(false);
+    // cin.tie(0);
     int t;
     cin >> t;
 

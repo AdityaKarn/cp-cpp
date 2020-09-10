@@ -1,23 +1,23 @@
-#include<iostream>
-#include<vector>
-#include<algorithm>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
-#define REP(i,n) for (int i = 1; i <= n; i++)
+#define REP(i, n) for (int i = 1; i <= n; i++)
 
 #define mod 1000000007
 #define pb push_back
 #define ff first
 #define ss second
-#define ii pair<int,int>
+#define ii pair<int, int>
 #define vi vector<int>
 #define vii vector<ii>
 #define lli long long int
 #define INF 1000000000
 
-
 using namespace std;
- 
-struct edge{
+
+struct edge
+{
     int a;
     int b;
     int w;
@@ -27,43 +27,61 @@ edge arr[10001];
 bool visited[10001];
 int par[10001];
 
-bool comp(edge a, edge b){
-    if(a.w<b.w) return true;
-    else return false;
+bool comp(edge a, edge b)
+{
+    if (a.w < b.w)
+        return true;
+    else
+        return false;
 }
 
-void merge(int a, int b){
+void merge(int a, int b)
+{
     par[a] = b;
-
 }
 
-int find(int a){
-    if(par[a]==-1) return a;
+int find(int a)
+{
+    if (par[a] == -1)
+        return a;
 
-    else return par[a] = find(par[a]);
+    else
+        return par[a] = find(par[a]);
 }
 
-int main(){
-    int m,n,a,b,w; cin>>n>>m;
+int main()
+{
+    int m, n, a, b, w;
+    cin >> n >> m;
 
-    REP(i,n) par[i] = -1;
+    REP(i, n)
+    par[i] = -1;
 
-    for(int i = 0; i< m; i++){
-        cin>>arr[i].a>>arr[i].b >>arr[i].w;
+    for (int i = 0; i < m; i++)
+    {
+        cin >> arr[i].a >> arr[i].b >> arr[i].w;
     }
 
-    sort(arr, arr+m, comp);
-    int sum =0;
+    sort(arr, arr + m, comp);
+    int sum = 0;
+    vector<pair<int, int>> edgesFinal;
 
-    for(int i =0; i< m; i++){
+    for (int i = 0; i < m; i++)
+    {
         a = find(arr[i].a);
         b = find(arr[i].b);
 
-        if(a!=b){
+        if (a != b)
+        {
+            // edgesFinal.push_back({arr[i].a, arr[i].b});
             sum += arr[i].w;
-            merge(a,b);
+            merge(a, b);
         }
     }
-    cout<<sum;
 
+    // for (auto x : edgesFinal)
+    // {
+    //     cout << x.first << " " << x.second << "\n";
+    // }
+    cout << sum;
 }
