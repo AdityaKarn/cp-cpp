@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <climits>
+#include <map>
 #define REP(i, n) for (int i = 1; i <= n; i++)
 
 #define mod 1000000007
@@ -19,16 +20,35 @@
     cout.tie(0);
 
 using namespace std;
-const int MAX = (int)1e4 + 5;
+
+vector<int> id[100001];
+
 void solveTestCases()
 {
+    int n, a, b;
+
+    cin >> n >> a >> b;
+    a--, b--;
+
+    string s;
+    cin >> s;
+
+    if (s[a] == s[b])
+    {
+        cout << "0\n";
+    }
+
+    else
+    {
+        cout << "1\n";
+    }
 }
 
 int main()
 {
     IOS;
     int t;
-    cin >> t;
+    t = 1;
 
     while (t--)
     {

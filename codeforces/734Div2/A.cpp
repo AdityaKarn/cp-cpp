@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -19,16 +20,46 @@
     cout.tie(0);
 
 using namespace std;
-const int MAX = (int)1e4 + 5;
+
 void solveTestCases()
 {
+    int n;
+    cin >> n;
+
+    string s;
+    cin >> s;
+
+    int a = 0, d = 0;
+    for (char ch : s)
+    {
+        if (ch == 'A')
+        {
+            a++;
+        }
+        else
+        {
+            d++;
+        }
+    }
+    if (a == d)
+    {
+        cout << "Friendship\n";
+    }
+    else if (a > d)
+    {
+        cout << "Anton\n";
+    }
+    else
+    {
+        cout << "Danik\n";
+    }
 }
 
 int main()
 {
     IOS;
     int t;
-    cin >> t;
+    t = 1;
 
     while (t--)
     {

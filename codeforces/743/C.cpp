@@ -19,16 +19,26 @@
     cout.tie(0);
 
 using namespace std;
-const int MAX = (int)1e4 + 5;
+
 void solveTestCases()
 {
+    int n;
+    cin >> n;
+
+    if (n == 1)
+    {
+        cout << "-1\n";
+        return;
+    }
+
+    cout << n << " " << (lli)n + 1 << " " << (lli)(n * (n + 1)) << "\n";
 }
 
 int main()
 {
     IOS;
     int t;
-    cin >> t;
+    t = 1;
 
     while (t--)
     {

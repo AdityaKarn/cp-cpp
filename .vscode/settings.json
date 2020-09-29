@@ -52,6 +52,9 @@
         "xtree": "cpp",
         "xutility": "cpp",
         "climits": "cpp",
-        "unordered_map": "cpp"
-    }
+        "unordered_map": "cpp",
+        "functional": "cpp",
+        "xhash": "cpp"
+    },
+    "python.pythonPath": "C:\\Users\\ADI\\Anaconda3\\python.exe"
 }

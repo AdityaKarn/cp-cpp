@@ -19,16 +19,55 @@
     cout.tie(0);
 
 using namespace std;
-const int MAX = (int)1e4 + 5;
+
+bool comp(pair<int, pair<int, int>> o1, pair<int, pair<int, int>> o2)
+{
+    if (o1.first == o2.first)
+    {
+        return o1.second.first < o2.second.first;
+    }
+
+    return o1.first > o2.first;
+}
+
 void solveTestCases()
 {
+    int n, m;
+
+    cin >> n >> m;
+    int res = INT_MAX;
+
+    while (m--)
+    {
+        int l, r;
+
+        cin >> l >> r;
+
+        res = min(res, r - l);
+    }
+
+    cout << res + 1 << "\n";
+
+    int j = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        cout << j << " ";
+        j++;
+
+        if (j == res + 1)
+        {
+            j = 0;
+        }
+    }
+
+    cout << "\n";
 }
 
 int main()
 {
     IOS;
     int t;
-    cin >> t;
+    t = 1;
 
     while (t--)
     {

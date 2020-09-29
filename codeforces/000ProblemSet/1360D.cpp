@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <climits>
+#include <cmath>
 #define REP(i, n) for (int i = 1; i <= n; i++)
 
 #define mod 1000000007
@@ -19,14 +20,39 @@
     cout.tie(0);
 
 using namespace std;
-const int MAX = (int)1e4 + 5;
+
 void solveTestCases()
 {
+    lli n, k;
+    cin >> n >> k;
+
+    if (n == k)
+    {
+        cout << "1\n";
+        return;
+    }
+
+    lli Factor = n;
+
+    for (lli i = 1; i <= sqrt(n); i++)
+    {
+        if (n % i == 0 && i <= k)
+        {
+            Factor = min(Factor, n / i);
+
+            if (n / i <= k)
+            {
+                Factor = min(Factor, i);
+            }
+        }
+    }
+
+    cout << Factor << "\n";
 }
 
 int main()
 {
-    IOS;
+    // IOS;
     int t;
     cin >> t;
 

@@ -19,16 +19,32 @@
     cout.tie(0);
 
 using namespace std;
-const int MAX = (int)1e4 + 5;
+
 void solveTestCases()
 {
+    int k2, k3, k5, k6;
+
+    cin >> k2 >> k3 >> k5 >> k6;
+
+    int tfs = min(k2, k5);
+    tfs = min(tfs, k6);
+    // cout << tfs << "\n";
+    lli res = (lli)tfs * (lli)256;
+
+    k2 -= tfs;
+
+    int tt = min(k2, k3);
+
+    res += (lli)tt * (lli)32;
+
+    cout << res << "\n";
 }
 
 int main()
 {
     IOS;
     int t;
-    cin >> t;
+    t = 1;
 
     while (t--)
     {

@@ -19,55 +19,48 @@
     cout.tie(0);
 
 using namespace std;
-lli l, r, m;
-lli A, B, C;
-
-bool check(int n, int a)
-{
-    if (n == 0)
-        return 0;
-
-    A = a;
-
-    int diff = m - (n * a);
-
-    if (abs(diff) > r - l)
-    {
-        return 0;
-    }
-
-    if (diff > 0)
-    {
-        C = l;
-        B = l + diff;
-    }
-    else
-    {
-        C = r;
-        B = r - abs(diff);
-    }
-    return 1;
-}
+int l[101];
+int a[101];
 void solveTestCases()
 {
-    cin >> l >> r >> m;
 
-    for (int i = l; i <= r; i++)
+    int n;
+    cin >> n;
+
+    int num;
+    for (int i = 0; i < n; i++)
     {
-        int n = m / i;
+        cin >> a[i];
+    }
 
-        if (check(n, i))
+    for (int i = 0; i < n; i++)
+    {
+        cin >> l[i];
+    }
+    vector<int> UL;
+    for (int i = 0; i < n; i++)
+    {
+        if (l[i] == 0)
         {
-            cout << A << " " << B << " " << C << "\n";
-            break;
-        }
-        if (check(n + 1, i))
-        {
-            cout << A << " " << B << " " << C << "\n";
-            break;
+            UL.push_back(a[i]);
         }
     }
-    return;
+
+    sort(UL.begin(), UL.end(), greater<int>());
+
+    for (int i = 0; i < n; i++)
+    {
+        if (l[i] == 1)
+        {
+            cout << a[i] << " ";
+        }
+        else
+        {
+            cout << UL[UL.size() - 1] << " ";
+            UL.pop_back();
+        }
+    }
+    cout << "\n";
 }
 
 int main()

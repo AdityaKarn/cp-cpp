@@ -22,6 +22,34 @@ using namespace std;
 const int MAX = (int)1e4 + 5;
 void solveTestCases()
 {
+    int n, m;
+
+    cin >> n >> m;
+
+    bool pos = false;
+    for (int i = 0; i < n; i++)
+    {
+        int a, b, c, d;
+        cin >> a >> b >> c >> d;
+
+        if (b == c)
+        {
+            pos = true;
+        }
+    }
+    if (m % 2)
+    {
+        cout << "NO\n";
+        return;
+    }
+    if (pos)
+    {
+        cout << "YES\n";
+    }
+    else
+    {
+        cout << "NO\n";
+    }
 }
 
 int main()

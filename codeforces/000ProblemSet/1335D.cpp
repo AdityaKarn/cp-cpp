@@ -19,20 +19,36 @@
     cout.tie(0);
 
 using namespace std;
-const int MAX = (int)1e4 + 5;
-void solveTestCases()
-{
-}
 
 int main()
 {
     IOS;
+
     int t;
     cin >> t;
 
+    // int temp;
     while (t--)
     {
-        solveTestCases();
+        string s;
+
+        for (int i = 0; i < 9; i++)
+        {
+            cin >> s;
+
+            for (char c : s)
+            {
+                if (c == '9')
+                {
+                    cout << 1;
+                }
+                else
+                {
+                    cout << c;
+                }
+            }
+            cout << "\n";
+        }
     }
 
     return 0;

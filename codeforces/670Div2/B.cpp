@@ -19,9 +19,25 @@
     cout.tie(0);
 
 using namespace std;
-const int MAX = (int)1e4 + 5;
+
 void solveTestCases()
 {
+    int n;
+    cin >> n;
+    vector<lli> a(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+    sort(a.begin(), a.end());
+
+    lli res = a[n - 1] * a[n - 2] * a[n - 3] * a[n - 4] * a[n - 5];
+
+    res = max(res, a[n - 1] * a[n - 2] * a[n - 3] * a[0] * a[1]);
+
+    res = max(res, a[n - 1] * a[3] * a[2] * a[1] * a[0]);
+
+    cout << res << "\n";
 }
 
 int main()

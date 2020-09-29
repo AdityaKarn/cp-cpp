@@ -19,9 +19,46 @@
     cout.tie(0);
 
 using namespace std;
-const int MAX = (int)1e4 + 5;
+
+int A[1001];
+
 void solveTestCases()
 {
+    int n, k;
+    cin >> n >> k;
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> A[i];
+    }
+
+    sort(A, A + n);
+
+    int toAdd = A[0];
+
+    if (A[0] > k)
+    {
+        cout << "0\n";
+        return;
+    }
+
+    int i = 1;
+    lli res = 0;
+    while (i < n)
+    {
+        // cout << i << " " << A[i] << " " << A[0] << "\n";
+        if (A[i] + toAdd <= k)
+        {
+            A[i] += toAdd;
+            res++;
+        }
+        else
+        {
+            i++;
+        }
+    }
+
+    cout << res << "\n";
 }
 
 int main()

@@ -1,0 +1,36 @@
+1600347178311	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\ADI\\AppData\\Local\\Temp\\rust_mozprofileM0x0CD"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1600347220370	Marionette	INFO	Listening on port 55986
+1600347220889	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: Region.jsm: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 689))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 343))
+1600347354501	Marionette	INFO	Stopped listening on port 55986
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+odules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1600347268765	Marionette	INFO	Listening on port 56112
+1600347269118	Marionette	WARN	TLS certificate errors will be ignored for this session
+1600347357393	Marionette	INFO	Stopped listening on port 56112
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+odules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1600347307943	Marionette	INFO	Listening on port 56206
+1600347308251	Marionette	WARN	TLS certificate errors will be ignored for this session
+1600347335268	Marionette	INFO	Stopped listening on port 56206
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+

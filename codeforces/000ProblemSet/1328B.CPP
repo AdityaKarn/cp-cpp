@@ -19,55 +19,45 @@
     cout.tie(0);
 
 using namespace std;
-lli l, r, m;
-lli A, B, C;
 
-bool check(int n, int a)
-{
-    if (n == 0)
-        return 0;
-
-    A = a;
-
-    int diff = m - (n * a);
-
-    if (abs(diff) > r - l)
-    {
-        return 0;
-    }
-
-    if (diff > 0)
-    {
-        C = l;
-        B = l + diff;
-    }
-    else
-    {
-        C = r;
-        B = r - abs(diff);
-    }
-    return 1;
-}
 void solveTestCases()
 {
-    cin >> l >> r >> m;
+    lli n;
+    cin >> n;
 
-    for (int i = l; i <= r; i++)
+    lli k;
+    cin >> k;
+
+    lli _lamd = 0;
+
+    for (_lamd = 1; _lamd <= n; _lamd++)
     {
-        int n = m / i;
-
-        if (check(n, i))
+        // cout << _lamd << "\n";
+        if ((_lamd * (_lamd + 1)) / 2 >= k)
         {
-            cout << A << " " << B << " " << C << "\n";
-            break;
-        }
-        if (check(n + 1, i))
-        {
-            cout << A << " " << B << " " << C << "\n";
             break;
         }
     }
-    return;
+
+    lli firstBindex = n - _lamd;
+    // cout << firstBindex << " ";
+
+    lli secondBindex = ((_lamd * (_lamd + 1)) / 2) - k;
+    secondBindex += firstBindex + 1;
+    // cout << secondBindex << "\n";
+
+    for (int i = 1; i <= n; i++)
+    {
+        if (i == firstBindex || i == secondBindex)
+        {
+            cout << "b";
+        }
+        else
+        {
+            cout << "a";
+        }
+    }
+    cout << "\n";
 }
 
 int main()

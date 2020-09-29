@@ -19,16 +19,46 @@
     cout.tie(0);
 
 using namespace std;
-const int MAX = (int)1e4 + 5;
+int a[102];
+int p[102];
 void solveTestCases()
 {
+    int n, m;
+    cin >> n >> m;
+
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> a[i];
+    }
+
+    p[0] = 0;
+    p[1] = a[1];
+    for (int i = 2; i <= n; i++)
+    {
+        p[i] = p[i - 1] + a[i];
+    }
+
+    lli res = 0;
+    while (m--)
+    {
+        int l, r;
+        cin >> l >> r;
+
+        int sum = p[r] - p[l - 1];
+
+        // cout << sum << "\n";
+
+        res += max(sum, 0);
+    }
+
+    cout << res << "\n";
 }
 
 int main()
 {
     IOS;
     int t;
-    cin >> t;
+    t = 1;
 
     while (t--)
     {

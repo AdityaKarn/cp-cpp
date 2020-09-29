@@ -19,9 +19,42 @@
     cout.tie(0);
 
 using namespace std;
-const int MAX = (int)1e4 + 5;
+
 void solveTestCases()
 {
+    int n, l, k;
+
+    cin >> n >> k >> l;
+
+    if (k == 1)
+    {
+        if (n == 1)
+        {
+            cout << "1\n";
+            return;
+        }
+        else
+        {
+            cout << "-1\n";
+            return;
+        }
+    }
+    if (k * l < n)
+    {
+        cout << "-1\n";
+        return;
+    }
+    int j = 1;
+    for (int i = 1; i <= n; i++)
+    {
+        cout << j << " ";
+        j++;
+        if (j == k + 1)
+        {
+            j = 1;
+        }
+    }
+    cout << "\n";
 }
 
 int main()
