@@ -1,4 +1,8 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
+#include <unordered_map>
 #define REP(i, n) for (int i = 1; i <= n; i++)
 
 #define mod 1000000007
@@ -19,13 +23,38 @@ using namespace std;
 const int MAX = (int)1e4 + 5;
 void solveTestCases()
 {
+    string s;
+    cin >> s;
+
+    int n = s.size();
+
+    unordered_map<string, int> sub;
+    lli res = 0;
+    for (int i = 0; i < n; i++)
+    {
+        string cur;
+        for (int j = i; j < i + n; j++)
+        {
+            cur += s[j % n];
+        }
+
+        // cout << cur << "\n";
+
+        if (sub.find(cur) == sub.end())
+        {
+            res++;
+            sub[cur]++;
+        }
+    }
+
+    cout << res << "\n";
 }
 
 int main()
 {
     IOS;
     int t;
-    cin >> t;
+    t = 1;
 
     while (t--)
     {
