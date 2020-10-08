@@ -54,7 +54,8 @@
         "climits": "cpp",
         "unordered_map": "cpp",
         "functional": "cpp",
-        "xhash": "cpp"
+        "xhash": "cpp",
+        "array": "cpp"
     },
     "python.pythonPath": "C:\\Users\\ADI\\Anaconda3\\python.exe"
 }
