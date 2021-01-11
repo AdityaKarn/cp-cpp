@@ -21,38 +21,57 @@
     cout.tie(0);
 
 using namespace std;
+const int MAX = (int)1e5 + 5;
 
-template <typename T>
-T gcd(T a, T b)
-{
-    if (a == 0)
-        return b;
-    return gcd(b % a, a);
-}
-template <typename T>
-T pow(T a, T b, lli m)
-{
-    T ans = 1;
-    while (b > 0)
-    {
-        if (b % 2 == 1)
-            ans = (ans * a) % m;
-        b /= 2;
-        a = (a * a) % m;
-    }
-    return ans % m;
-}
-
-const int MAX = (int)1e4 + 5;
 void solveTestCases()
 {
+    lli n;
+    cin >> n;
+
+    vector<lli> PreCalc(n + 1);
+
+    for (lli i = 1; i <= n; i++)
+    {
+        PreCalc[i] = (lli)((i * (i + 1)) / 2);
+    }
+
+    bool isPossible = false;
+    for (lli i = 1; i <= n; i++)
+    {
+        lli firstPart = (i * (i + 1)) / 2;
+
+        lli findN = n - firstPart;
+        vector<lli>::iterator toFind;
+        toFind = lower_bound(PreCalc.begin(), PreCalc.end(), findN);
+
+        int REM = toFind - PreCalc.begin();
+        // trace2(firstPart, PreCalc[REM]);
+
+        if (PreCalc[REM] + firstPart == n)
+        {
+            // cout << firstPart << " " << PreCalc[REM];
+            isPossible = true;
+            break;
+        }
+    }
+
+    if (isPossible)
+    {
+        cout << "YES\n";
+    }
+    else
+    {
+        cout << "NO\n";
+    }
 }
 
 int main()
 {
+
     IOS;
+
     int t;
-    cin >> t;
+    t = 1;
 
     while (t--)
     {

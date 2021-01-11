@@ -43,9 +43,29 @@ T pow(T a, T b, lli m)
     return ans % m;
 }
 
-const int MAX = (int)1e4 + 5;
+const int MAX = (int)1e5 + 5;
+int A[MAX];
+
 void solveTestCases()
 {
+    int n, x;
+    cin >> n >> x;
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> A[i];
+    }
+
+    lli ceilsum = 0;
+    lli sum = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        ceilsum += (A[i] + x - 1) / x;
+        sum += A[i];
+    }
+
+    cout << (sum + x - 1) / x << " " << ceilsum << "\n";
 }
 
 int main()

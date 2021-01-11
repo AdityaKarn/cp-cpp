@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#define REP(i, n) for (int i = 0; i < n; i++)
+#define REP(i, n) for (int i = 1; i <= n; i++)
 #define trace1(x) cerr << #x << ": " << x << "\n"
 #define trace2(x, y) cerr << #x << ": " << x << " | " << #y << ": " << y << "\n"
 #define trace3(x, y, z) cerr << #x << ":" << x << " | " << #y << ": " << y << " | " << #z << ": " << z << "\n"
@@ -21,38 +21,29 @@
     cout.tie(0);
 
 using namespace std;
+const int MAX = (int)4e + 5;
 
-template <typename T>
-T gcd(T a, T b)
+vector<vector<int>> grid(MAX, vector<int>(MAX, 0));
+vector<ii> directions[8];
+
+int doFortyFiveLeft(int x, int y, int t)
 {
-    if (a == 0)
-        return b;
-    return gcd(b % a, a);
-}
-template <typename T>
-T pow(T a, T b, lli m)
-{
-    T ans = 1;
-    while (b > 0)
+    while (t--)
     {
-        if (b % 2 == 1)
-            ans = (ans * a) % m;
-        b /= 2;
-        a = (a * a) % m;
+        if (x - 1 >= 0 &&)
     }
-    return ans % m;
 }
 
-const int MAX = (int)1e4 + 5;
 void solveTestCases()
 {
+    direction[0].push_back({})
 }
 
 int main()
 {
     IOS;
     int t;
-    cin >> t;
+    t = 1;
 
     while (t--)
     {

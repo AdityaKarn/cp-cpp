@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#define REP(i, n) for (int i = 0; i < n; i++)
+#define REP(i, n) for (int i = 1; i <= n; i++)
 #define trace1(x) cerr << #x << ": " << x << "\n"
 #define trace2(x, y) cerr << #x << ": " << x << " | " << #y << ": " << y << "\n"
 #define trace3(x, y, z) cerr << #x << ":" << x << " | " << #y << ": " << y << " | " << #z << ": " << z << "\n"
@@ -21,38 +21,46 @@
     cout.tie(0);
 
 using namespace std;
-
-template <typename T>
-T gcd(T a, T b)
-{
-    if (a == 0)
-        return b;
-    return gcd(b % a, a);
-}
-template <typename T>
-T pow(T a, T b, lli m)
-{
-    T ans = 1;
-    while (b > 0)
-    {
-        if (b % 2 == 1)
-            ans = (ans * a) % m;
-        b /= 2;
-        a = (a * a) % m;
-    }
-    return ans % m;
-}
-
 const int MAX = (int)1e4 + 5;
+
+lli res = 0;
+
+lli num;
+
+void calc(string s, int x)
+{
+    for (int i = 0; i < s.size() - x + 1; i++)
+    {
+        string sub = s.substr(i, x);
+        lli m = stol(sub, nullptr, 10);
+
+        trace1(m);
+        }
+}
+
 void solveTestCases()
 {
+    string s;
+    cin >> s;
+
+    int n;
+    n = s.size();
+
+    num = stol(s, nullptr, 10);
+
+    // cout << num;
+    for (int i = 1; i <= n; i++)
+    {
+        calc(s, i);
+    }
+    cout << res << "\n";
 }
 
 int main()
 {
     IOS;
     int t;
-    cin >> t;
+    t = 1;
 
     while (t--)
     {

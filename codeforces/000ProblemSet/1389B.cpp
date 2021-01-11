@@ -21,31 +21,44 @@
     cout.tie(0);
 
 using namespace std;
+const int MAX = (int)1e5 + 5;
 
-template <typename T>
-T gcd(T a, T b)
-{
-    if (a == 0)
-        return b;
-    return gcd(b % a, a);
-}
-template <typename T>
-T pow(T a, T b, lli m)
-{
-    T ans = 1;
-    while (b > 0)
-    {
-        if (b % 2 == 1)
-            ans = (ans * a) % m;
-        b /= 2;
-        a = (a * a) % m;
-    }
-    return ans % m;
-}
+int a[MAX];
 
-const int MAX = (int)1e4 + 5;
 void solveTestCases()
 {
+    int n, k, z;
+    cin >> n >> k >> z;
+
+    REP(i, n)
+    {
+        cin >> a[i];
+    }
+
+    int mx = 0, s = 0;
+    int ans = 0;
+    for (int t = 0; t <= z; t++)
+    {
+        int pos = k - 2 * t;
+
+        if (pos < 0)
+            continue;
+
+        mx = 0, s = 0;
+        for (int i = 0; i <= pos; i++)
+        {
+            if (i < n - 1)
+            {
+                mx = max(mx, a[i] + a[i + 1]);
+            }
+
+            s += a[i];
+        }
+
+        ans = max(ans, s + mx * t);
+    }
+
+    cout << ans << "\n";
 }
 
 int main()

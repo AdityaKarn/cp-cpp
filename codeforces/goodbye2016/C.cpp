@@ -1,0 +1,109 @@
+#include <bits/stdc++.h>
+
+#define REP(i, n) for (int i = 1; i <= n; i++)
+#define trace1(x) cerr << #x << ": " << x << "\n"
+#define trace2(x, y) cerr << #x << ": " << x << " | " << #y << ": " << y << "\n"
+#define trace3(x, y, z) cerr << #x << ":" << x << " | " << #y << ": " << y << " | " << #z << ": " << z << "\n"
+#define trace4(a, b, c, d) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << "\n"
+#define trace5(a, b, c, d, e) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << "\n"
+#define mod 1000000007
+#define pb push_back
+#define ff first
+#define ss second
+#define ii pair<int, int>
+#define vi vector<int>
+#define vii vector<ii>
+#define lli long long int
+#define INF 1000000000
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+
+using namespace std;
+const int MAX = (int)1e4 + 5;
+void solveTestCases()
+{
+    int n;
+    cin >> n;
+
+    vector<pair<int, int>> inp;
+
+    int relative = 0;
+    int max_second = INT_MIN, max_sec_idx;
+    for (int i = 0; i < n; i++)
+    {
+        int a, b;
+        cin >> a >> b;
+        inp.pb(make_pair(a, b));
+
+        if (b == 2 && relative > max_second)
+        {
+            max_second = max(max_second, relative);
+            max_sec_idx = i;
+        }
+
+        relative += a;
+    }
+
+    if (max_second == INT_MIN)
+    {
+        cout << "Infinity\n";
+        return;
+    }
+
+    int rating_at_i = 1899;
+    int current_rating = 1899;
+    if (max_sec_idx > 0)
+        for (int i = max_sec_idx - 1; i >= 0; i--)
+        {
+            current_rating -= inp[i].first;
+            // trace3(current_rating, inp[i].first, inp[i].second);
+
+            if (current_rating >= 1900 && inp[i].second != 1)
+            {
+                cout << "Impossible\n";
+                return;
+            }
+
+            if (current_rating < 1900 && inp[i].second != 2)
+            {
+                cout << "Impossible\n";
+                return;
+            }
+        }
+
+    for (int i = max_sec_idx; i < n; i++)
+    {
+
+        // trace3(rating_at_i, inp[i].first, inp[i].second);
+
+        if (rating_at_i >= 1900 && inp[i].second != 1)
+        {
+            cout << "Impossible\n";
+            return;
+        }
+        if (rating_at_i < 1900 && inp[i].second != 2)
+        {
+            cout << "Impossible\n";
+            return;
+        }
+        rating_at_i += inp[i].first;
+    }
+
+    cout << rating_at_i << "\n";
+}
+
+int main()
+{
+    IOS;
+    int t;
+    t = 1;
+
+    while (t--)
+    {
+        solveTestCases();
+    }
+
+    return 0;
+}

@@ -21,31 +21,36 @@
     cout.tie(0);
 
 using namespace std;
+const int MAX = (int)1e5 + 5;
 
-template <typename T>
-T gcd(T a, T b)
-{
-    if (a == 0)
-        return b;
-    return gcd(b % a, a);
-}
-template <typename T>
-T pow(T a, T b, lli m)
-{
-    T ans = 1;
-    while (b > 0)
-    {
-        if (b % 2 == 1)
-            ans = (ans * a) % m;
-        b /= 2;
-        a = (a * a) % m;
-    }
-    return ans % m;
-}
+int a[MAX];
+int dp[MAX][3];
 
-const int MAX = (int)1e4 + 5;
 void solveTestCases()
 {
+    int n;
+    cin >> n;
+
+    REP(i, n)
+    {
+        cin >> a[i];
+        dp[i][0] = 0;
+        dp[i][1] = 0;
+        dp[i][2] = 0;
+    }
+    dp[n][0] = 0;
+    dp[n][1] = 0;
+    dp[n][2] = 0;
+
+    REP(i, n)
+    {
+        dp[i + 1][0] = max(dp[i + 1][0], dp[i][0] + (i & 1 ? 0 : a[i]));
+        if (i + 2 <= n)
+            dp[i + 2][1] = max(dp[i + 2][1], max(dp[i][0], dp[i][0]) + (i & 1) ? a[i] : a[i + 1]);
+        dp[i + 1][2] = max(dp[i + 1][2], max({dp[i][0], dp[i][1], dp[i][2]}) + (i & 1) ? 0 : a[i]);
+    }
+
+    cout << max({dp[n][0], dp[n][1], dp[n][2]}) << "\n";
 }
 
 int main()

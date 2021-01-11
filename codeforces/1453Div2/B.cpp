@@ -43,9 +43,33 @@ T pow(T a, T b, lli m)
     return ans % m;
 }
 
-const int MAX = (int)1e4 + 5;
+const int MAX = (int)2e5 + 5;
+lli a[MAX];
+
 void solveTestCases()
 {
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+
+    lli max_diff = INT_MIN;
+    lli total_cost = 0;
+
+    for (int i = 1; i < n - 1; i++)
+    {
+        max_diff = max(max_diff, abs(a[i] - a[i - 1]) + abs(a[i + 1] - a[i]) - abs(a[i + 1] - a[i - 1]));
+        total_cost += abs(a[i] - a[i - 1]);
+    }
+    total_cost += abs(a[n - 1] - a[n - 2]);
+
+    max_diff = max(max_diff, abs(a[1] - a[0]));
+    max_diff = max(max_diff, abs(a[n - 1] - a[n - 2]));
+
+    cout << total_cost - max_diff << "\n";
 }
 
 int main()

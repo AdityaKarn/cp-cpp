@@ -21,31 +21,63 @@
     cout.tie(0);
 
 using namespace std;
-
-template <typename T>
-T gcd(T a, T b)
-{
-    if (a == 0)
-        return b;
-    return gcd(b % a, a);
-}
-template <typename T>
-T pow(T a, T b, lli m)
-{
-    T ans = 1;
-    while (b > 0)
-    {
-        if (b % 2 == 1)
-            ans = (ans * a) % m;
-        b /= 2;
-        a = (a * a) % m;
-    }
-    return ans % m;
-}
-
 const int MAX = (int)1e4 + 5;
 void solveTestCases()
 {
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+
+    lli res = 0;
+    lli bothsize = 0;
+    lli allconti = true, allanti = true;
+    for (int i = 0; i < n; i++)
+    {
+        if (s[i] == '>')
+        {
+            allanti = false;
+        }
+        if (s[i] == '<')
+        {
+            allconti = false;
+        }
+        if (s[i] == '-')
+        {
+            bothsize++;
+        }
+        else
+        {
+            if (bothsize)
+            {
+                res += bothsize + 1;
+                // trace1(res);
+                bothsize = 0;
+            }
+        }
+    }
+    if (bothsize)
+    {
+        res += bothsize + 1;
+    }
+
+    if (s[0] == '-' && s[n - 1] == '-')
+    {
+        res--;
+    }
+
+    if (allanti)
+    {
+        cout << n << "\n";
+        return;
+    }
+    if (allconti)
+    {
+        cout << n << "\n";
+        return;
+    }
+
+    cout << res << "\n";
 }
 
 int main()

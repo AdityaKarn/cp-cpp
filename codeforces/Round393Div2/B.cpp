@@ -46,13 +46,29 @@ T pow(T a, T b, lli m)
 const int MAX = (int)1e4 + 5;
 void solveTestCases()
 {
+    lli n, m, k;
+
+    cin >> n >> m >> k;
+
+    // if (n == 1)
+    // {
+    //     cout << m << "\n";
+    // }
+
+    lli left_ = (k * (k - 1)) / 2;
+    lli right_elem = n - k;
+    lli right_ = (right_elem * (right_elem + 1)) / 2;
+
+    lli res = (m + left_ + right_) / n;
+
+    cout << res << "\n";
 }
 
 int main()
 {
     IOS;
     int t;
-    cin >> t;
+    t = 1;
 
     while (t--)
     {

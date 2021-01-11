@@ -46,8 +46,44 @@ T pow(T a, T b, lli m)
 const int MAX = (int)1e4 + 5;
 void solveTestCases()
 {
-}
+    int n, k;
+    string s1, s2;
 
+    cin >> n >> k;
+    cin >> s1 >> s2;
+    array<int, 27> have{}, need{};
+
+    for (auto &c : s1)
+    {
+        // trace1(c);
+        have[c - 'a']++;
+    }
+    for (auto &c : s2)
+    {
+        // trace1(c);
+        need[c - 'a']++;
+    }
+
+    bool bad = false;
+
+    for (int i = 0; i < 26; i++)
+    {
+        if (have[i] < need[i] || (have[i] -= need[i]) % k)
+        {
+            bad = true;
+        }
+        have[i + i] += have[i];
+    }
+
+    if (bad)
+    {
+        cout << "No\n";
+    }
+    else
+    {
+        cout << "Yes\n";
+    }
+}
 int main()
 {
     IOS;

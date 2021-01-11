@@ -1,69 +1,124 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 
 #define REP(i, n) for (int i = 1; i <= n; i++)
-
+#define trace1(x) cerr << #x << ": " << x << "\n"
+#define trace2(x, y) cerr << #x << ": " << x << " | " << #y << ": " << y << "\n"
+#define trace3(x, y, z) cerr << #x << ":" << x << " | " << #y << ": " << y << " | " << #z << ": " << z << "\n"
+#define trace4(a, b, c, d) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << "\n"
+#define trace5(a, b, c, d, e) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << "\n"
 #define mod 1000000007
 #define pb push_back
+#define ff first
+#define ss second
 #define ii pair<int, int>
 #define vi vector<int>
 #define vii vector<ii>
 #define lli long long int
 #define INF 1000000000
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
 
 using namespace std;
+const int MAX = (int)1e5 + 5;
 
-int arr[100001], st[400004];
+int a[MAX], st[4 * MAX];
 
-void build(int si, int ss, int se)
+void buildTree(int v, int sl, int sr)
 {
-    if (ss == se)
+    if (sl == sr)
     {
-        st[si] = arr[ss];
-        return;
+        st[v] = a[sl];
     }
+    else
+    {
+        int sm = ((sl + sr) / 2);
 
-    int mid = (ss + se) / 2;
+        buildTree(v * 2, sl, sm);
+        buildTree(v * 2 + 1, sm + 1, sr);
 
-    build(2 * si, ss, mid);
-    build(2 * si + 1, mid + 1, se);
-
-    st[si] = min(st[2 * si], st[(2 * si) + 1]);
+        st[v] = min(st[v * 2], st[v * 2 + 1]);
+    }
+    // trace1(st[v]);
 }
 
-int query(int si, int ss, int se, int qs, int qe)
+int query(int v, int sl, int sr, int l, int r)
 {
-    if (ss > qe || se < qs)
+    if (l > r)
+    {
         return INF;
+    }
+    if (l == sl && r == sr)
+    {
+        return st[v];
+    }
 
-    if (ss >= qs && se <= qe)
-        return st[si];
+    int sm = (sl + sr) / 2;
 
-    int mid = (se + ss) / 2;
+    return min(query(v * 2, sl, sm, l, min(r, sm)), query(v * 2 + 1, sm + 1, sr, max(l, sm + 1), r));
+}
 
-    int l = query(2 * si, ss, mid, qs, qe);
-    int r = query(2 * si + 1, mid + 1, se, qs, qe);
+// void update(int v, int sl, int sr, int pos, int new_value)
+// {
+//     if (sl == sr)
+//     {
+//         st[v] = new_value;
+//     }
+//     else
+//     {
+//         int sm = (sl + sr) / 2;
+//         if (pos <= sm)
+//         {
+//             update(v * 2, sl, sm, pos, new_value);
+//         }
+//         else
+//         {
+//             update(v * 2 + 1, sm + 1, sr, pos, new_value);
+//         }
+//         st[v] = st[v * 2] + st[v * 2 + 1];
+//     }
+// }
 
-    return min(l, r);
+void solveTestCases()
+{
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+
+    buildTree(1, 0, n - 1);
+
+    int q;
+    cin >> q;
+
+    // for (int i = 0; i < 4 * n; i++)
+    // {
+    //     cout << st[i] << " ";
+    // }
+    // cout << "\n";
+
+    while (q--)
+    {
+        int l, r;
+        cin >> l >> r;
+
+        cout << query(1, 0, n - 1, l, r) << "\n";
+    }
 }
 
 int main()
 {
+    IOS;
+    int t;
+    t = 1;
 
-    int n, q, l, r;
-
-    cin >> n;
-
-    REP(i, n)
-    cin >> arr[i];
-    build(1, 1, n);
-    cin >> q;
-
-    REP(i, q)
+    while (t--)
     {
-        cin >> l >> r;
-        cout << query(1, 1, n, l + 1, r + 1) << endl;
+        solveTestCases();
     }
 
     return 0;

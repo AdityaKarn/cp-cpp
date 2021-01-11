@@ -22,30 +22,56 @@
 
 using namespace std;
 
-template <typename T>
-T gcd(T a, T b)
-{
-    if (a == 0)
-        return b;
-    return gcd(b % a, a);
-}
-template <typename T>
-T pow(T a, T b, lli m)
-{
-    T ans = 1;
-    while (b > 0)
-    {
-        if (b % 2 == 1)
-            ans = (ans * a) % m;
-        b /= 2;
-        a = (a * a) % m;
-    }
-    return ans % m;
-}
-
 const int MAX = (int)1e4 + 5;
+
 void solveTestCases()
 {
+    int n, q;
+    cin >> n >> q;
+
+    string s;
+    cin >> s;
+    // cout << s;
+    while (q--)
+    {
+        int l, r;
+        cin >> l >> r;
+        l--, r--;
+
+        char left = s[l], right = s[r];
+
+        bool pos = false;
+
+        for (int i = l - 1; i >= 0; i--)
+        {
+            // trace2(s[i], left);
+            if (s[i] == left)
+            {
+                pos = true;
+                break;
+            }
+        }
+
+        for (int i = r + 1; i < n; i++)
+        {
+            // trace2(s[i], right);
+
+            if (s[i] == right)
+            {
+                pos = true;
+                break;
+            }
+        }
+
+        if (pos)
+        {
+            cout << "YES\n";
+        }
+        else
+        {
+            cout << "NO\n";
+        }
+    }
 }
 
 int main()

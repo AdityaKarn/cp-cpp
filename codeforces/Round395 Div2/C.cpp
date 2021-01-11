@@ -22,37 +22,62 @@
 
 using namespace std;
 
-template <typename T>
-T gcd(T a, T b)
+const int MAX = 1e5 + 5;
+struct edge
 {
-    if (a == 0)
-        return b;
-    return gcd(b % a, a);
-}
-template <typename T>
-T pow(T a, T b, lli m)
-{
-    T ans = 1;
-    while (b > 0)
-    {
-        if (b % 2 == 1)
-            ans = (ans * a) % m;
-        b /= 2;
-        a = (a * a) % m;
-    }
-    return ans % m;
-}
+    int x;
+    int y;
+};
 
-const int MAX = (int)1e4 + 5;
+edge e[MAX];
+
+int color[MAX];
+int cnt[MAX];
+
 void solveTestCases()
 {
+    int n;
+    cin >> n;
+
+    for (int i = 1; i <= n - 1; i++)
+    {
+        cin >> e[i].x >> e[i].y;
+    }
+
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> color[i];
+    }
+
+    int sum = 0;
+
+    for (int i = 1; i <= n; i++)
+    {
+        if (color[e[i].x] != color[e[i].y])
+        {
+            sum++;
+            cnt[e[i].x]++;
+            cnt[e[i].y]++;
+        }
+    }
+
+    for (int i = 1; i <= n; ++i)
+    {
+        if (cnt[i] == sum)
+        {
+            cout << "YES\n";
+            cout << i << "\n";
+            return;
+        }
+    }
+    cout << "NO\n";
 }
 
 int main()
 {
     IOS;
     int t;
-    cin >> t;
+    t = 1;
 
     while (t--)
     {

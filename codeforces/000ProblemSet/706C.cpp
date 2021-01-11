@@ -21,39 +21,54 @@
     cout.tie(0);
 
 using namespace std;
+const int MAX = (int)1e5 + 5;
 
-template <typename T>
-T gcd(T a, T b)
-{
-    if (a == 0)
-        return b;
-    return gcd(b % a, a);
-}
-template <typename T>
-T pow(T a, T b, lli m)
-{
-    T ans = 1;
-    while (b > 0)
-    {
-        if (b % 2 == 1)
-            ans = (ans * a) % m;
-        b /= 2;
-        a = (a * a) % m;
-    }
-    return ans % m;
-}
-
-const int MAX = (int)1e4 + 5;
+int c[MAX];
+int dp[MAX][2];
 void solveTestCases()
 {
+    int n;
+    cin>>n;
+
+    REP(i, n){
+        cin>>c[i];
+    }
+
+    vector<string> Q(n);
+
+    for(int i = 1; i<=n; i++){
+
+        dp[i][0] = INT_MAX;
+        dp[i][1] = INT_MAX;
+    }
+    dp[0][0] = 0;
+    dp[0][1] = 0;
+    for(int i = 1; i<=n; i++){
+
+        if(Q[i] > Q[i-1]){
+            dp[i][0] = min(dp[i][0], dp[i-1][0]);
+            dp[i][0] = min(dp[i][0], dp[i-1][1]);
+        }
+
+        string rev_s = reverse(Q[i].begin(), Q[i].end());
+
+        if(rev_s > Q[i-1]){
+            dp[i][1] = min(dp[i][0], dp[i-1][0] + c[i]);
+            dp[i][1] = min(dp[i][0], dp[i-1][1] + c[i]);
+
+        }
+    }
+
+    cout<<min(dp[n][0], dp[n][1])<<"\n";
+
+
 }
 
 int main()
 {
     IOS;
     int t;
-    cin >> t;
-
+    t =1;
     while (t--)
     {
         solveTestCases();

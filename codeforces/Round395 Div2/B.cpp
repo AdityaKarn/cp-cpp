@@ -43,16 +43,46 @@ T pow(T a, T b, lli m)
     return ans % m;
 }
 
-const int MAX = (int)1e4 + 5;
+const int MAX = (int)2e5 + 5;
+
+int A[MAX];
+
 void solveTestCases()
 {
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> A[i];
+    }
+
+    int i = 0, j = n - 1;
+    int num = 0;
+    while (i <= j)
+    {
+
+        if (num % 2 == 0)
+        {
+            swap(A[i], A[j]);
+        }
+        num++;
+        i++;
+        j--;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << A[i] << " ";
+    }
+    cout << "\n";
 }
 
 int main()
 {
     IOS;
     int t;
-    cin >> t;
+    t = 1;
 
     while (t--)
     {

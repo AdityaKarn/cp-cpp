@@ -44,8 +44,40 @@ T pow(T a, T b, lli m)
 }
 
 const int MAX = (int)1e4 + 5;
+int train[102];
+
 void solveTestCases()
 {
+    int n, m;
+    cin >> n >> m;
+
+    int res = 0;
+    for (int i = 0; i < 101; i++)
+    {
+        train[i] = 0;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        int a;
+        cin >> a;
+
+        train[a]++;
+    }
+
+    for (int i = 0; i < m; i++)
+    {
+        int a;
+        cin >> a;
+        train[a]++;
+
+        if (train[a] == 2)
+        {
+            res++;
+        }
+    }
+
+    cout << res << "\n";
 }
 
 int main()

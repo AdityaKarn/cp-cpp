@@ -43,16 +43,30 @@ T pow(T a, T b, lli m)
     return ans % m;
 }
 
+int days[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
 const int MAX = (int)1e4 + 5;
 void solveTestCases()
 {
+    int m, w;
+    cin >> m >> w;
+
+    int rem_days = days[m] - abs(8 - w);
+
+    int rem_colums = rem_days / 7;
+
+    rem_colums += ((rem_days % 7) != 0);
+    // trace2(rem_days, rem_colums);
+
+    cout << rem_colums + 1 << "\n";
 }
 
 int main()
 {
     IOS;
     int t;
-    cin >> t;
+    // cin >> t;
+    t = 1;
 
     while (t--)
     {
